@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CMQuizGame</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="main-container">
+
+    <!-- Profile Section -->
+    <section id="profile" class="section">
+      <h2>👤 Your Profile</h2>
+      <input type="text" id="username" placeholder="Enter your name" />
+      <br/>
+      <input type="file" id="profilePicInput" accept="image/*" />
+      <br/><br/>
+      <button onclick="saveProfile()">Save Profile</button>
+      <div id="profilePreview"></div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section id="quiz" class="section" style="display:none">
+      <div id="levelButtons">
+        <h3>🎯 Choose Difficulty</h3>
+        <button onclick="startGame('easy')">Easy</button>
+        <button onclick="startGame('medium')">Medium</button>
+        <button onclick="startGame('hard')">Hard</button>
+        <button onclick="startGame('mixed')">Easy → Hard</button>
+      </div>
+
+      <div id="gameContainer" style="display:none">
+        <div id="score">Score: 0</div>
+        <div id="highScore">🏅 High Score: 0</div>
+        <div id="timer">Time left: 30s</div>
+        <div class="question" id="question">Loading...</div>
+        <div class="options">
+          <button onclick="checkAnswer(this)"></button>
+          <button onclick="checkAnswer(this)"></button>
+          <button onclick="checkAnswer(this)"></button>
+          <button onclick="checkAnswer(this)"></button>
+        </div>
+        <div id="status"></div>
+      </div>
+    </section>
+
+    <!-- Leaderboard Section -->
+    <section id="leaderboard" class="section" style="display:none">
+      <h2>🏆 Leaderboard</h2>
+      <div id="leaderboardDisplay"></div>
+    </section>
+
+  </div>
+
+  <!-- Navigation Tabs at Bottom -->
+  <div class="tabs">
+    <button onclick="showSection('profile')">👤 Profile</button>
+    <button onclick="showSection('quiz')">🎮 Quiz</button>
+    <button onclick="showSection('leaderboard')">🏆 Leaderboard</button>
+  </div>
+
+  <!-- App Credit -->
+  <div id="founderTag">App Founder: Chandan Majee</div>
+
+  <script src="script.js"></script>
+</body>
+      </html>
