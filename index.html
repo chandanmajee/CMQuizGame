@@ -5,12 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>CMQuizGame</title>
   <link rel="stylesheet" href="style.css" />
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js"></script>
 </head>
 <body>
-
   <div class="main-container">
-
-    <!-- Profile Section -->
+    <!-- Sections -->
     <section id="profile" class="section">
       <h2>👤 Your Profile</h2>
       <input type="text" id="username" placeholder="Enter your name" />
@@ -21,7 +22,6 @@
       <div id="profilePreview"></div>
     </section>
 
-    <!-- Quiz Section -->
     <section id="quiz" class="section" style="display:none">
       <div id="levelButtons">
         <h3>🎯 Choose Difficulty</h3>
@@ -30,7 +30,6 @@
         <button onclick="startGame('hard')">Hard</button>
         <button onclick="startGame('mixed')">Easy → Hard</button>
       </div>
-
       <div id="gameContainer" style="display:none">
         <div id="score">Score: 0</div>
         <div id="highScore">🏅 High Score: 0</div>
@@ -46,41 +45,43 @@
       </div>
     </section>
 
-    <!-- Leaderboard Section -->
     <section id="leaderboard" class="section" style="display:none">
       <h2>🏆 Leaderboard</h2>
       <div id="leaderboardDisplay"></div>
     </section>
-
   </div>
 
-  <!-- Navigation Tabs at Bottom -->
+  <!-- Navigation -->
   <div class="tabs">
     <button onclick="showSection('profile')">👤 Profile</button>
     <button onclick="showSection('quiz')">🎮 Quiz</button>
     <button onclick="showSection('leaderboard')">🏆 Leaderboard</button>
   </div>
 
-  <!-- App Credit -->
-  <div id="founderTag">App Founder: Chandan Majee</div>
-
-  <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/9.24.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.24.0/firebase-database-compat.js"></script>
+  <!-- Firebase Config -->
   <script>
     const firebaseConfig = {
       apiKey: "AIzaSyC1hnm2Gy2HUe_sTIE_ZMi-dS576iExDNA",
       authDomain: "cmquizgame.firebaseapp.com",
       databaseURL: "https://cmquizgame-default-rtdb.asia-southeast1.firebasedatabase.app",
       projectId: "cmquizgame",
-      storageBucket: "cmquizgame.appspot.com",
+      storageBucket: "cmquizgame.firebasestorage.app",
       messagingSenderId: "886559064118",
-      appId: "1:886559064118:web:4678963166f3a21275d897"
+      appId: "1:886559064118:web:4678963166f3a21275d897",
+      measurementId: "G-LXKKBDBQ3J"
     };
+
     firebase.initializeApp(firebaseConfig);
-    const db = firebase.database();
+    const database = firebase.database();
   </script>
 
+  <!-- Main Game Logic -->
   <script src="script.js"></script>
+<!-- Firebase App SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+<!-- Your game logic -->
+<script src="script.js"></script>
 </body>
-</html>
+  </html>
+  
