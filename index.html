@@ -64,6 +64,23 @@
   <!-- App Credit -->
   <div id="founderTag">App Founder: Chandan Majee</div>
 
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.24.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.24.0/firebase-database-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyC1hnm2Gy2HUe_sTIE_ZMi-dS576iExDNA",
+      authDomain: "cmquizgame.firebaseapp.com",
+      databaseURL: "https://cmquizgame-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "cmquizgame",
+      storageBucket: "cmquizgame.appspot.com",
+      messagingSenderId: "886559064118",
+      appId: "1:886559064118:web:4678963166f3a21275d897"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+  </script>
+
   <script src="script.js"></script>
 </body>
-      </html>
+</html>
