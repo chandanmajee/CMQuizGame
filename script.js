@@ -10,7 +10,6 @@ let currentProfilePic = "";
 function showSection(id) {
   document.querySelectorAll(".section").forEach(sec => sec.style.display = "none");
   document.getElementById(id).style.display = "block";
-  if (id === "leaderboard") displayLeaderboard();
 }
 
 function saveProfile() {
@@ -132,7 +131,6 @@ function checkAnswer(button) {
     }, 1000);
   } else {
     clearInterval(timer);
-    saveToLeaderboard();
     document.getElementById("status").innerHTML = `
       ❌ Wrong Answer!<br/>
       <button onclick='startGame(difficulty)'>🔁 Restart</button>
@@ -143,63 +141,6 @@ function checkAnswer(button) {
 
 function rand(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-function saveToLeaderboard() {
-  const key = `leaderboard_${difficulty}`;
-  const leaderboard = JSON.parse(localStorage.getItem(key) || "[]");
-  const existing = leaderboard.find(e => e.name === currentUsername);
-
-  if (!existing || existing.score < score) {
-    const filtered = leaderboard.filter(e => e.name !== currentUsername);
-    filtered.push({ name: currentUsername, score, pic: currentProfilePic });
-    filtered.sort((a, b) => b.score - a.score);
-    localStorage.setItem(key, JSON.stringify(filtered.slice(0, 10)));
-  }
-}
-
-function displayLeaderboard() {
-  const types = ["easy", "medium", "hard", "mixed"];
-  const names = { easy: "Easy", medium: "Medium", hard: "Hard", mixed: "Easy To Hard" };
-  let html = "";
-
-  types.forEach(type => {
-    const leaderboard = JSON.parse(localStorage.getItem(`leaderboard_${type}`) || "[]");
-    html += `<h3 onclick='toggleBoard("${type}")' style='cursor:pointer'>📊 ${names[type]} - Click to see Leaderboard</h3>`;
-    html += `<div id='${type}_board' style='display:none;margin-bottom:15px'>`;
-
-    const topThree = leaderboard.slice(0, 3);
-    const others = leaderboard.slice(3);
-
-    html += `<div style="display: flex; justify-content: center; gap: 20px;">
-      <div>🥈 ${renderPlayer(topThree[1])}</div>
-      <div>🥇 ${renderPlayer(topThree[0])}</div>
-      <div>🥉 ${renderPlayer(topThree[2])}</div>
-    </div>`;
-
-    if (others.length > 0) {
-      html += `<ol style="margin-top:10px">`;
-      others.forEach((e, i) => {
-        html += `<li>Rank ${i + 4}: ${renderPlayer(e)}</li>`;
-      });
-      html += `</ol>`;
-    }
-
-    html += `</div>`;
-  });
-
-  document.getElementById("leaderboardDisplay").innerHTML = html;
-}
-
-function toggleBoard(type) {
-  const div = document.getElementById(`${type}_board`);
-  div.style.display = div.style.display === "none" ? "block" : "none";
-}
-
-function renderPlayer(player) {
-  if (!player) return "-";
-  const img = player.pic ? `<img src='${player.pic}' width='30' style='vertical-align:middle;border-radius:50%'/>` : "";
-  return `${img} ${player.name} (${player.score})`;
 }
 
 window.onload = () => {
